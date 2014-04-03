@@ -1,4 +1,4 @@
-# Codestrong 2012
+# Codestrong 2012 (on sdk 3.1.3)
 
 The [Codestrong 2012](http://www.codestrong.com) conference application was created using Titanium Mobile
 and the brand-spanking new MVC framework, Alloy, which was written on top of it to enhance developer productivity.
