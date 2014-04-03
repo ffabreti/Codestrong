@@ -1,7 +1,9 @@
 //dependencies
 var Cloud = require('ti.cloud'),
 	Gravitas = require('gravitas'),
-	social = require('alloy/social');
+	social = require('alloy/social'),
+	facebook = Alloy.Globals.facebook;
+	
 	
 //Create a Twitter client for this module
 var twitter = social.create({
@@ -30,7 +32,7 @@ User.confirmLogin = function() {
 
 //Check social login
 User.confirmLogin.toFacebook = function() {
-	return Ti.Facebook.loggedIn;
+	return facebook.loggedIn;
 };
 
 User.confirmLogin.toTwitter = function() {
@@ -39,16 +41,16 @@ User.confirmLogin.toTwitter = function() {
 
 //Link to Facebook
 User.linkToFacebook = function(cb) {
-	Ti.Facebook.addEventListener('login', function(e) {
+	facebook.addEventListener('login', function(e) {
 		cb && cb(e);
 	});
-	Ti.Facebook.authorize();
+	facebook.authorize();
 };
 User.logoutFacebook = function(cb) {
-	Ti.Facebook.addEventListener('logout', function(e) {
+	facebook.addEventListener('logout', function(e) {
 		cb && cb(e);
 	});
-	Ti.Facebook.logout();
+	facebook.logout();
 };
 
 //Link to Twitter
@@ -95,7 +97,7 @@ User.facebookPost = function(args) {
 	}
 	
 	if (args.image) {
-		Ti.Facebook.requestWithGraphPath('me/photos', {
+		facebook.requestWithGraphPath('me/photos', {
 			message:args.message,
 			picture:args.image
 		}, 'POST', function(e){
@@ -108,7 +110,7 @@ User.facebookPost = function(args) {
 		});
 	}
 	else {
-		Ti.Facebook.requestWithGraphPath('me/feed', {
+		facebook.requestWithGraphPath('me/feed', {
 			message: args.message
 		}, 'POST', function(e) {
 		    if (e.success) {
@@ -259,7 +261,7 @@ User.assignProfilePhoto = function(blob, cb) {
 			//Now, grab the profile image URL...
 			Cloud.Users.showMe(function(ev) {
 				if (ev.success) {
-					var me = ev.users[0]
+					var me = ev.users[0];
 					Ti.App.Properties.setString('profileImage', me.photo.urls.square_75);
 				}
 				cb(e);
