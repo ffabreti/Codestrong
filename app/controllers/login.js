@@ -47,7 +47,7 @@ if (OS_IOS) {
 
 //Login using network creds
 $.login.addEventListener('click', function() {
-	$.index.parent.add($.loading.getView());
+	$.index.parent.add($.loading.getView());  //here the hell is parent documented?
 	$.loading.start();
 	$.email.blur();
 	$.password.blur();
@@ -65,7 +65,7 @@ $.login.addEventListener('click', function() {
 
 //Go to signup page
 $.create.addEventListener('click', function() {
-	$.email.blur();
+	$.email.blur(); //hides keyboard
 	$.password.blur();
 	Ti.Platform.openURL('https://my.appcelerator.com/auth/signup');
 });

@@ -2,7 +2,7 @@
 var Cloud = require('ti.cloud'),
 	Gravitas = require('gravitas'),
 	social = require('alloy/social'),
-	facebook = Alloy.Globals.facebook;
+	facebook = require('facebook');;
 	
 	
 //Create a Twitter client for this module
