@@ -1,6 +1,7 @@
 var Cloud = require('ti.cloud'),
 	moment = require('moment');
-	
+
+Cloud.debug = true;	
 //Cache all session data at the module level for every launch,
 //but force a refresh after a certain amount of time TODO
 var sessions = [],
