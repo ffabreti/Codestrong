@@ -2,7 +2,7 @@
 var User = require('User'),
 	ui = require('ui');
 
-var facebook = Alloy.Globals.facebook;
+var facebook = require('facebook');
 
 //App configuration
 facebook.appid = Ti.App.Properties.getString('ti.facebook.appid');
@@ -19,7 +19,7 @@ $.login = Alloy.createController('login');
 //Check Login Status
 if (User.confirmLogin()) {
 	$.main = Alloy.createController('main');
-	$.clouds && ($.index.remove($.clouds));
+	$.clouds && ($.index.remove($.clouds)); //remove image view
 	$.index.backgroundImage = '/img/general/bg-interior.png';
 	$.index.add($.main.getView());
 	$.main.init();
