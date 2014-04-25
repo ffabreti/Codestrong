@@ -11,9 +11,18 @@ function loadContent() {
 	Session.getNext(function(e) {
 		if (e.success) {
 			var session = e.next;
-			$.title.text = session.name;
-			$.presenter.text = session.custom_fields.presenter;
-			$.location.text = session.custom_fields.location;
+			if (session===undefined) {
+				$.title.text = 'No events found';
+				$.presenter.text = '';
+				$.location.text =  '';	
+			}
+			else {
+				$.title.text = session.name ;
+				$.presenter.text = session.custom_fields.presenter;
+				$.location.text = session.custom_fields.location;	
+			}	
+		
+			
 			
 			if ($.dailySchedule) {
 				var now = moment(),
@@ -21,7 +30,7 @@ function loadContent() {
 					tueDate = moment('Oct 23, 2012');
 					day = 'tuesday';
 				if (now.diff(monDate) < 0) {
-					day = 'sunday'
+					day = 'sunday';
 				}
 				else if (now.diff(tueDate) < 0) {
 					day = 'monday';
