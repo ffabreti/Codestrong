@@ -19,7 +19,8 @@
 	top:'200dp',
 	bottom:'10dp',
 	width:'250dp',
-	opacity:0
+	opacity:0,
+	font: { fontColor:'Black'} 
 },
 
 '#loginHelp': {
